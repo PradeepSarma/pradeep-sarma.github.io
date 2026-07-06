@@ -8,12 +8,12 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#060a14;--bg2:#0c1220;--card:#0f1828;--border:#1c2d44;
+  --bg:transparent;--bg2:rgba(8,14,30,.55);--card:rgba(10,18,32,.7);--border:#1c2d44;
   --cyan:#00c8f0;--violet:#8a6fc4;--white:#eaf2ff;--muted:#6b7a8d;--text:#aabdd4;
   --accent2:#f06292;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;cursor:none}
+body{background:#050911;color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;cursor:none}
 
 /* cursor */
 #cur{position:fixed;width:10px;height:10px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:screen}
@@ -157,10 +157,16 @@ footer a{color:var(--cyan);text-decoration:none;font-family:'Space Mono',monospa
   .hero{padding:6rem 1.5rem 3rem}section{padding:4rem 1.5rem}
   #cur,#cur-r{display:none}body{cursor:auto}
 }
+
+/* ═══════════════════════ AURORA ═══════════════════════ */
+#aurora-canvas{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:1}
+
+/* aurora is full-page background */
 </style>
 </head>
 <body>
 
+<canvas id="aurora-canvas"></canvas>
 <div id="cur"></div>
 <div id="cur-r"></div>
 
@@ -536,24 +542,24 @@ document.querySelectorAll('a,button,[data-tilt]').forEach(el=>{
 
   /* ── OUTER ICOSAHEDRON (not sphere — more interesting geometry) ── */
   const icoGeo=new THREE.IcosahedronGeometry(2.2,3);
-  const icoMat=new THREE.MeshBasicMaterial({color:0x00c8f0,wireframe:true,transparent:true,opacity:.06});
+  const icoMat=new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:.05});
   const ico=new THREE.Mesh(icoGeo,icoMat);
   group.add(ico);
 
   /* ── INNER OCTAHEDRON ── */
   const octGeo=new THREE.OctahedronGeometry(1.1,2);
-  const octMat=new THREE.MeshBasicMaterial({color:0x8a6fc4,wireframe:true,transparent:true,opacity:.13});
+  const octMat=new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:.08});
   const oct=new THREE.Mesh(octGeo,octMat);
   group.add(oct);
 
   /* ── INNERMOST TETRAHEDRON ── */
   const tetGeo=new THREE.TetrahedronGeometry(.55,2);
-  const tetMat=new THREE.MeshBasicMaterial({color:0xf06292,wireframe:true,transparent:true,opacity:.18});
+  const tetMat=new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true,transparent:true,opacity:.1});
   const tet=new THREE.Mesh(tetGeo,tetMat);
   group.add(tet);
 
   /* ── 5 ORBITING RINGS at different angles ── */
-  const ringColors=[0x00c8f0,0x8a6fc4,0xf06292,0x00c8f0,0xa78bfa];
+  const ringColors=[0xffffff,0xffffff,0xffffff,0xffffff,0xffffff];
   const ringAngles=[[Math.PI/2,0,0],[0,Math.PI/3,0],[Math.PI/4,Math.PI/4,0],[0,Math.PI/2,Math.PI/5],[Math.PI/6,0,Math.PI/3]];
   const rings=ringAngles.map((angles,i)=>{
     const r=new THREE.Mesh(
@@ -569,7 +575,7 @@ document.querySelectorAll('a,button,[data-tilt]').forEach(el=>{
   const PC=600;
   const pPos=new Float32Array(PC*3);
   const pCol=new Float32Array(PC*3);
-  const cA=new THREE.Color(0x00c8f0),cB=new THREE.Color(0x8a6fc4),cC=new THREE.Color(0xf06292);
+  const cA=new THREE.Color(0xffffff),cB=new THREE.Color(0xeaf2ff),cC=new THREE.Color(0xffffff);
   for(let i=0;i<PC;i++){
     const th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);
     const r=1.5+Math.random()*3.5;
@@ -601,7 +607,7 @@ document.querySelectorAll('a,button,[data-tilt]').forEach(el=>{
   }
   const lGeo=new THREE.BufferGeometry();
   lGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(linePositions),3));
-  const lMat=new THREE.LineBasicMaterial({color:0x00c8f0,transparent:true,opacity:.06});
+  const lMat=new THREE.LineBasicMaterial({color:0xffffff,transparent:true,opacity:.04});
   group.add(new THREE.LineSegments(lGeo,lMat));
 
   /* ── SHOCKWAVE RING (on click) ── */
@@ -624,7 +630,7 @@ document.querySelectorAll('a,button,[data-tilt]').forEach(el=>{
   }
   const starGeo=new THREE.BufferGeometry();
   starGeo.setAttribute('position',new THREE.BufferAttribute(starPos,3));
-  scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xffffff,size:.08,transparent:true,opacity:.3})));
+  scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xffffff,size:.06,transparent:true,opacity:.2})));
 
   /* ── MOUSE ── */
   let mouseX=0,mouseY=0;
@@ -822,6 +828,169 @@ document.querySelectorAll('.sk-tags').forEach(group=>{
     });
   });
 });
+
+/* ═══════════════════════════════════════════════════════
+   AURORA BOREALIS — WebGL shader-based
+   Multi-layer flowing light curtains, full page, fixed
+═══════════════════════════════════════════════════════ */
+(function(){
+  const cv=document.getElementById('aurora-canvas');
+  const gl=cv.getContext('webgl',{alpha:true,premultipliedAlpha:false});
+  if(!gl)return;
+
+  function resize(){cv.width=innerWidth;cv.height=innerHeight;gl.viewport(0,0,cv.width,cv.height)}
+  resize();window.addEventListener('resize',resize);
+
+  const vsSrc=`
+    attribute vec2 a_pos;
+    void main(){gl_Position=vec4(a_pos,0,1);}
+  `;
+
+  const fsSrc=`
+    precision highp float;
+    uniform float u_time;
+    uniform vec2  u_res;
+    uniform vec2  u_mouse;
+    uniform vec2  u_mouse_smooth; // smoothed mouse for colour shift
+
+    float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+    float noise(vec2 p){
+      vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);
+      return mix(mix(hash(i),hash(i+vec2(1,0)),u.x),
+                 mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),u.x),u.y);
+    }
+    float fbm(vec2 p){
+      float v=0.,a=.5;
+      for(int i=0;i<6;i++){v+=a*noise(p);p*=2.1;a*=.5;}
+      return v;
+    }
+
+    // HSV to RGB for smooth hue rotation
+    vec3 hsv2rgb(vec3 c){
+      vec4 K=vec4(1.,2./3.,1./3.,3.);
+      vec3 p=abs(fract(c.xxx+K.xyz)*6.-K.www);
+      return c.z*mix(K.xxx,clamp(p-K.xxx,0.,1.),c.y);
+    }
+
+    void main(){
+      vec2 uv=gl_FragCoord.xy/u_res;
+      vec2 mouse=u_mouse/u_res;          // raw — for warp
+      vec2 ms=u_mouse_smooth/u_res;      // smoothed — for colour shift
+      float t=u_time*.14;
+
+      // mouse proximity — how close each pixel is to cursor
+      float mdist=length(uv-mouse);
+      float mGlow=smoothstep(.7,0.,mdist);  // strong glow near cursor
+
+      // cursor-driven hue offset — X controls warm/cool, Y controls shift amount
+      float hueShift=ms.x*1.2;             // 0=cyan side, 1=magenta side
+      float satBoost=1.0+ms.y*.6;          // top of screen = more saturated
+      float brightnessBoost=1.0+mGlow*.9;  // cursor proximity brightens aurora
+
+      // warp UVs — cursor pulls the fabric toward it
+      vec2 toMouse=mouse-uv;
+      vec2 warp=vec2(
+        fbm(uv*1.4+vec2(t*.55, t*.28)),
+        fbm(uv*1.4+vec2(t*.38,-t*.48)+3.7)
+      );
+      // cursor adds extra warp pull — aurora bends toward where you are
+      vec2 wuv=uv+warp*.38+toMouse*mGlow*.18+(ms-.5)*.12;
+
+      // 6 band layers
+      float band1=fbm(wuv*vec2(2.2,1.0)+vec2(t*.48,0.));
+      float band2=fbm(wuv*vec2(2.8,1.4)+vec2(-t*.38,t*.18)+1.3);
+      float band3=fbm(wuv*vec2(1.6,1.8)+vec2(t*.28,-t*.28)+2.6);
+      float band4=fbm(wuv*vec2(2.0,0.9)+vec2(-t*.5,t*.12)+5.1);
+      float band5=fbm(wuv*vec2(3.2,1.2)+vec2(t*.32,t*.22)+7.4);
+      float band6=fbm(wuv*vec2(1.4,2.4)+vec2(-t*.25,-t*.35)+9.8);
+
+      band1=pow(max(band1,0.),2.0);
+      band2=pow(max(band2,0.),2.4);
+      band3=pow(max(band3,0.),1.8);
+      band4=pow(max(band4,0.),2.6);
+      band5=pow(max(band5,0.),2.2);
+      band6=pow(max(band6,0.),1.9);
+
+      // BASE colours — defined in HSV so hue can shift with mouse X position
+      // cursor left = cool (cyan/blue/violet), cursor right = warm (pink/gold/green)
+      vec3 c1=hsv2rgb(vec3(mod(0.52+hueShift*.0,1.),satBoost*.9,1.))*band1; // cyan→teal
+      vec3 c2=hsv2rgb(vec3(mod(0.75+hueShift*.15,1.),satBoost*.85,1.))*band2;// violet→magenta
+      vec3 c3=hsv2rgb(vec3(mod(0.42+hueShift*.08,1.),satBoost*.95,1.))*band3;// green→teal
+      vec3 c4=hsv2rgb(vec3(mod(0.88+hueShift*.2,1.),satBoost*.80,1.))*band4; // pink→red
+      vec3 c5=hsv2rgb(vec3(mod(0.58+hueShift*.12,1.),satBoost*.88,1.))*band5;// blue→cyan
+      vec3 c6=hsv2rgb(vec3(mod(0.22+hueShift*.25,1.),satBoost*.75,1.))*band6;// gold→green
+
+      vec3 aurora=(c1*1.2+c2*1.0+c3*.85+c4*.75+c5*.9+c6*.55)*brightnessBoost;
+
+      // cursor hotspot — warm white bloom exactly at cursor position
+      vec3 cursorBloom=vec3(1.,.96,.92)*pow(mGlow,2.)*0.35;
+      aurora+=cursorBloom;
+
+      // shimmer ripple — cursor Y controls ripple speed
+      float rippleSpeed=1.1+ms.y*.8;
+      float shimmer=fbm(vec2(uv.x*5.5+t*rippleSpeed, uv.y*1.8+t*.3))*1.4;
+      aurora*=(0.62+shimmer*.48);
+
+      float lum=dot(aurora,vec3(.299,.587,.114));
+      float vWave=.55+.45*sin(uv.y*3.14159+t*.6)*sin(uv.x*6.28+t*.4);
+      aurora*=vWave;
+
+      aurora=aurora/max(lum+.001,1.)*min(lum,.46);
+
+      float topBias=.68+.32*(1.-uv.y);
+      float alpha=min(lum*3.4+mGlow*.25,.82)*topBias;
+
+      gl_FragColor=vec4(aurora,alpha);
+    }
+  `;
+
+  function mkShader(type,src){
+    const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;
+  }
+  const prog=gl.createProgram();
+  gl.attachShader(prog,mkShader(gl.VERTEX_SHADER,vsSrc));
+  gl.attachShader(prog,mkShader(gl.FRAGMENT_SHADER,fsSrc));
+  gl.linkProgram(prog);gl.useProgram(prog);
+
+  const buf=gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(prog,'a_pos');
+  gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+
+  const uTime=gl.getUniformLocation(prog,'u_time');
+  const uRes=gl.getUniformLocation(prog,'u_res');
+  const uMouse=gl.getUniformLocation(prog,'u_mouse');
+  const uMouseSmooth=gl.getUniformLocation(prog,'u_mouse_smooth');
+
+  gl.enable(gl.BLEND);
+  gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+
+  // raw mouse — instant response for warp pull
+  let mx=innerWidth*.4,my=innerHeight*.3;
+  // smoothed mouse — lazy follow for colour shift (so colours melt not snap)
+  let smx=innerWidth*.4,smy=innerHeight*.3;
+
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+
+  let startT=null;
+  function frame(ts){
+    if(!startT)startT=ts;
+    const t=(ts-startT)*.001;
+    // smooth mouse interpolation — colour changes melt over ~0.8s
+    smx+=(mx-smx)*.025;
+    smy+=(my-smy)*.025;
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(uTime,t);
+    gl.uniform2f(uRes,cv.width,cv.height);
+    gl.uniform2f(uMouse,mx,my);
+    gl.uniform2f(uMouseSmooth,smx,smy);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
 </script>
 </body>
 </html>
