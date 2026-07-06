@@ -181,15 +181,15 @@ footer a{color:var(--cyan);text-decoration:none;font-family:'Space Mono',monospa
   <div class="grid-fade"></div>
   <canvas id="three-c"></canvas>
   <div class="hero-inner">
-    <div class="intro-tag">AI / ML Engineer — currently @ Metry AI</div>
+    <div class="intro-tag">AI / ML Engineer — Multi-Agent Systems & Full-Stack LLM Infrastructure</div>
     <h1 class="hname">
       <span class="first">Pradeep Sarma</span>
       <span class="last">Kasibhotla.</span>
     </h1>
     <div class="bio">
       <p>I build AI systems that actually ship — not just notebooks and prototypes.</p>
-      <p>Right now I'm the AI lead at <strong>Metry AI</strong>, a small startup where I designed a <em>5-layer multi-agent framework</em> from scratch that handles real bookings for beauty salons. Before that, I spent nearly 3 years at <strong>TCS</strong> keeping production ML systems from breaking.</p>
-      <p>I care about the unglamorous parts of AI — validation pipelines, latency budgets, zero-touch onboarding. The stuff that makes models actually useful.</p>
+      <p>Right now I'm the AI lead at <strong>Metry AI</strong>, where I'm architecting a <em>multi-tenant SaaS platform</em> from scratch — tenant isolation, RBAC, encryption, rate limiting, audit logging, and lead generation pipelines, all consumed by a React/Next.js frontend. Before that, nearly 3 years at <strong>TCS</strong> keeping production ML systems from breaking.</p>
+      <p>I care about the unglamorous parts of AI — concurrency control, latency budgets, zero-touch onboarding. The infrastructure that makes models actually useful in the real world.</p>
     </div>
     <div class="ctas">
       <a href="#contact" class="btn-p">get in touch</a>
@@ -211,31 +211,31 @@ footer a{color:var(--cyan);text-decoration:none;font-family:'Space Mono',monospa
         <div class="s-label">a bit about me</div>
         <h2 class="s-title">I care about the gap between research and production.</h2>
         <p>Most AI projects fail not because the model is bad — they fail because nobody built the infrastructure around it. That's the part I find genuinely interesting.</p>
-        <p>At Metry AI I built an ingestion engine that scrapes JavaScript-rendered salon menus with <strong>zero human touch</strong> and gets a new client live in under 60 seconds. I also designed the inference layer — Groq + Llama 3.3 — to hit <em>sub-2-second latency</em> consistently, not just on a benchmark.</p>
-        <p>Before that at TCS, I maintained 200+ automated test suites inside Jenkins pipelines for production ML models. Not the glamorous part of AI. But when you reduce post-release failures by 30%, people notice.</p>
+        <p>At Metry AI I'm building a full multi-tenant SaaS backend — <strong>RBAC across three user tiers</strong>, atomic database locks to prevent race conditions, JWT auth via Clerk, webhook secret validation, and per-tenant Meta Permanent Access Token resolution. The AI piece runs on a <em>LangGraph state machine</em> that dynamically injects each tenant's business rules at inference time so new clients go live with zero code changes.</p>
+        <p>Before that at TCS, I maintained 200+ automated test suites inside Jenkins pipelines for production ML models. When you reduce post-release failures by 30%, people notice.</p>
         <p>I hold an MS in MIS from Northern Arizona University (3.88 GPA) and spent a year as a TA helping students actually understand ML — not just copy sklearn boilerplate.</p>
         <p style="color:var(--muted);font-size:.88rem;font-style:italic">Outside work: coffee, long walks, and occasionally yelling at PyTorch error messages.</p>
       </div>
       <div class="about-aside rv" style="transition-delay:.12s">
         <div class="tcard" data-tilt>
           <div class="tcard-in">
-            <div class="tcard-num">5-layer</div>
-            <h4>Multi-Agent Framework</h4>
-            <p>Built at Metry AI — handles intake, booking, revenue optimization, and geo-discovery as separate agents</p>
+            <div class="tcard-num">Multi-tenant</div>
+            <h4>SaaS Architecture</h4>
+            <p>RBAC across 3 user tiers, atomic DB locks, JWT auth, webhook validation — built from scratch at Metry AI</p>
           </div>
         </div>
         <div class="tcard" data-tilt>
           <div class="tcard-in">
             <div class="tcard-num">&lt;2s</div>
             <h4>Inference Latency</h4>
-            <p>Real-time LLM responses at scale using Groq + Llama 3.3. Not a demo number — production load.</p>
+            <p>LangGraph state machine on Groq + Llama 3.3. Production load, not a benchmark number.</p>
           </div>
         </div>
         <div class="tcard" data-tilt>
           <div class="tcard-in">
-            <div class="tcard-num">82%</div>
-            <h4>First ML Model</h4>
-            <p>Air quality prediction regression — where I learned that clean data beats clever algorithms every time.</p>
+            <div class="tcard-num">30%</div>
+            <h4>Fewer Prod Failures</h4>
+            <p>200+ automated test suites in Jenkins CI/CD at TCS — reduced post-release model failures measurably.</p>
           </div>
         </div>
         <div class="tcard" data-tilt>
@@ -267,11 +267,13 @@ footer a{color:var(--cyan);text-decoration:none;font-family:'Space Mono',monospa
           <h3>AI Project Lead</h3>
           <div class="role">Early-stage startup, 6-person team</div>
           <ul>
-            <li>Designed a 5-layer multi-agent conversational AI from scratch for SMB beauty salons — cut manual booking overhead by 40% <span class="tag">40% ↑</span></li>
-            <li>Built the LLM inference core on Groq + Llama 3.3. Sub-2-second latency under real load, not just in staging.</li>
-            <li>Wrote the Claw Ingestion Engine (OpenClaw) — autonomously scrapes JS-rendered menus, zero human touch, client onboarded in under 60 seconds</li>
-            <li>Designed a "Hot Deals" algorithm using time-series demand signals to fill low-occupancy slots — improves both revenue and booking density</li>
-            <li>Built geo-spatial beauty hubs that surface top venues within 2 miles of a user — added meaningful retention lift</li>
+            <li>Engineered an autonomous AI lead generation funnel that converts Instagram DM inquiries into confirmed bookings end-to-end — no human sales intervention needed</li>
+            <li>Architected a multi-tenant SaaS backend with RBAC across three user tiers — guest, registered customer, and salon admin — each with strictly scoped API access via tenant_resolver routing <span class="tag">built from scratch</span></li>
+            <li>Implemented end-to-end encryption and secure session management — JWT via Clerk, HTTPS enforcement, Meta webhook secret validation, and per-tenant token resolution at send time</li>
+            <li>Built concurrency control across the booking pipeline — atomic DB locks on calendar slots, immediate 200 OK webhook acknowledgments before AI processing, shared Groq keys for multi-tenant rate limit management</li>
+            <li>Delivered sub-2-second inference latency using a LangGraph state machine on Groq + Llama 3.3 that injects per-tenant business rules at runtime — new tenants onboard with zero code changes <span class="tag">&lt;2s latency</span></li>
+            <li>Cut booking overhead 40% by decomposing intake, scheduling, and follow-up across a 5-layer multi-agent framework with async I/O handling simultaneous DMs across tenants <span class="tag">40% ↑</span></li>
+            <li>Exposed modular FastAPI endpoints consumed by a React/Next.js frontend with TypeScript interface alignment for booking payloads and real-time admin dashboard data</li>
           </ul>
         </div>
       </div>
@@ -336,25 +338,37 @@ footer a{color:var(--cyan);text-decoration:none;font-family:'Space Mono',monospa
       <div class="sk-group rv" data-tilt>
         <h4>AI & ML</h4>
         <div class="sk-tags">
-          <span class="sk-tag">LangChain</span><span class="sk-tag">OpenAI API</span><span class="sk-tag">Groq</span><span class="sk-tag">Llama 3.3</span><span class="sk-tag">Multi-Agent Systems</span><span class="sk-tag">RAG Pipelines</span><span class="sk-tag">NLP</span><span class="sk-tag">Scikit-learn</span><span class="sk-tag">Supervised Learning</span><span class="sk-tag">Hyperparameter Tuning</span><span class="sk-tag">Predictive Modeling</span>
+          <span class="sk-tag">LangChain</span><span class="sk-tag">LangGraph</span><span class="sk-tag">OpenAI API</span><span class="sk-tag">Groq</span><span class="sk-tag">Llama 3.3</span><span class="sk-tag">Multi-Agent Systems</span><span class="sk-tag">RAG Pipelines</span><span class="sk-tag">Prompt Engineering</span><span class="sk-tag">NLP</span><span class="sk-tag">Lead Generation Automation</span><span class="sk-tag">Scikit-learn</span><span class="sk-tag">Predictive Modeling</span>
         </div>
       </div>
       <div class="sk-group rv" style="transition-delay:.08s" data-tilt>
-        <h4>Backend & APIs</h4>
+        <h4>Backend & Systems</h4>
         <div class="sk-tags">
-          <span class="sk-tag">Python</span><span class="sk-tag">Node.js</span><span class="sk-tag">FastAPI</span><span class="sk-tag">REST APIs</span><span class="sk-tag">Pandas</span><span class="sk-tag">Matplotlib</span><span class="sk-tag">Postman</span><span class="sk-tag">JSON</span>
+          <span class="sk-tag">Python</span><span class="sk-tag">Node.js</span><span class="sk-tag">FastAPI</span><span class="sk-tag">REST APIs</span><span class="sk-tag">Multi-Tenant Architecture</span><span class="sk-tag">RBAC</span><span class="sk-tag">Concurrency Control</span><span class="sk-tag">Rate Limiting</span><span class="sk-tag">Webhook Routing</span><span class="sk-tag">Async I/O</span><span class="sk-tag">Distributed Systems</span>
+        </div>
+      </div>
+      <div class="sk-group rv" style="transition-delay:.1s" data-tilt>
+        <h4>Security & Auth</h4>
+        <div class="sk-tags">
+          <span class="sk-tag">JWT Encryption</span><span class="sk-tag">Clerk Auth</span><span class="sk-tag">HTTPS Enforcement</span><span class="sk-tag">Webhook Secret Validation</span><span class="sk-tag">Session Management</span><span class="sk-tag">SOC 2-Aligned Data Isolation</span>
         </div>
       </div>
       <div class="sk-group rv" style="transition-delay:.14s" data-tilt>
-        <h4>Cloud & DevOps</h4>
+        <h4>Frontend & Integration</h4>
         <div class="sk-tags">
-          <span class="sk-tag">AWS EC2</span><span class="sk-tag">Lambda</span><span class="sk-tag">S3</span><span class="sk-tag">RDS</span><span class="sk-tag">CloudWatch</span><span class="sk-tag">IAM</span><span class="sk-tag">Jenkins</span><span class="sk-tag">Docker</span><span class="sk-tag">CI/CD</span><span class="sk-tag">GitHub</span><span class="sk-tag">Agile/Scrum</span>
+          <span class="sk-tag">React</span><span class="sk-tag">Next.js</span><span class="sk-tag">TypeScript</span><span class="sk-tag">REST API Contract Design</span><span class="sk-tag">Admin Dashboard Backend</span>
         </div>
       </div>
-      <div class="sk-group rv" style="transition-delay:.2s" data-tilt>
-        <h4>Data</h4>
+      <div class="sk-group rv" style="transition-delay:.18s" data-tilt>
+        <h4>Cloud & DevOps</h4>
         <div class="sk-tags">
-          <span class="sk-tag">PostgreSQL</span><span class="sk-tag">MySQL</span><span class="sk-tag">Power BI</span><span class="sk-tag">Feature Engineering</span><span class="sk-tag">Data Preprocessing</span><span class="sk-tag">Root-Cause Analysis</span>
+          <span class="sk-tag">AWS EC2</span><span class="sk-tag">Lambda</span><span class="sk-tag">S3</span><span class="sk-tag">RDS</span><span class="sk-tag">CloudWatch</span><span class="sk-tag">IAM</span><span class="sk-tag">Jenkins</span><span class="sk-tag">Docker</span><span class="sk-tag">CI/CD</span><span class="sk-tag">Audit Logging</span><span class="sk-tag">Agile/Scrum</span>
+        </div>
+      </div>
+      <div class="sk-group rv" style="transition-delay:.22s" data-tilt>
+        <h4>Data & Analytics</h4>
+        <div class="sk-tags">
+          <span class="sk-tag">PostgreSQL</span><span class="sk-tag">MySQL</span><span class="sk-tag">Power BI</span><span class="sk-tag">Feature Engineering</span><span class="sk-tag">Root-Cause Analysis</span><span class="sk-tag">Pandas</span>
         </div>
       </div>
     </div>
@@ -371,8 +385,8 @@ footer a{color:var(--cyan);text-decoration:none;font-family:'Space Mono',monospa
       <div class="proj-card rv" data-tilt>
         <div class="proj-yr">2025 — ongoing</div>
         <h3>Social Media AI Agent</h3>
-        <p>Autonomous multi-agent system that handles an entire social media operation — writes content, schedules posts, reads sentiment signals, and adjusts tone accordingly. Built at Metry AI so we didn't need a full-time social team.</p>
-        <div class="proj-tech"><span class="pt">LLM APIs</span><span class="pt">Node.js</span><span class="pt">NLP</span><span class="pt">Prompt chaining</span></div>
+        <p>Autonomous multi-agent outbound lead generation system — captures Instagram DM inquiries, qualifies intent, and converts to confirmed bookings. Built on Node.js async pipelines with real-time NLP sentiment analysis, LLM prompt-chaining, and multi-tenant account isolation so one system handles multiple salon clients simultaneously.</p>
+        <div class="proj-tech"><span class="pt">LangGraph</span><span class="pt">Node.js</span><span class="pt">NLP</span><span class="pt">Multi-tenant</span><span class="pt">Instagram API</span></div>
       </div>
       <div class="proj-card rv" style="transition-delay:.08s" data-tilt>
         <div class="proj-yr">2019 – 2020</div>
@@ -440,122 +454,374 @@ footer a{color:var(--cyan);text-decoration:none;font-family:'Space Mono',monospa
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-/* CURSOR */
+/* ═══════════════════════════════════════
+   MAGNETIC CURSOR — dual ring with trail
+═══════════════════════════════════════ */
 const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function lag(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(lag)})();
-document.querySelectorAll('a,button,[data-tilt]').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';curR.style.width='52px';curR.style.height='52px';curR.style.borderColor='rgba(0,200,240,.6)'});
-  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';curR.style.width='36px';curR.style.height='36px';curR.style.borderColor='rgba(0,200,240,.35)'});
+let mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+let curVX=0,curVY=0;
+
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
 });
 
-/* THREE.JS SPHERE */
+// Spawn trailing dots
+const trailDots=[];
+for(let i=0;i<8;i++){
+  const d=document.createElement('div');
+  d.style.cssText=`position:fixed;width:${4-i*0.35}px;height:${4-i*0.35}px;background:rgba(0,200,240,${0.5-i*0.06});border-radius:50%;pointer-events:none;z-index:9990;transform:translate(-50%,-50%);transition:none`;
+  document.body.appendChild(d);
+  trailDots.push({el:d,x:mx,y:my});
+}
+
+(function lagLoop(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  curR.style.left=rx+'px';curR.style.top=ry+'px';
+  // trail
+  for(let i=trailDots.length-1;i>0;i--){
+    trailDots[i].x+=(trailDots[i-1].x-trailDots[i].x)*.35;
+    trailDots[i].y+=(trailDots[i-1].y-trailDots[i].y)*.35;
+    trailDots[i].el.style.left=trailDots[i].x+'px';
+    trailDots[i].el.style.top=trailDots[i].y+'px';
+  }
+  trailDots[0].x+=(mx-trailDots[0].x)*.4;
+  trailDots[0].y+=(my-trailDots[0].y)*.4;
+  trailDots[0].el.style.left=trailDots[0].x+'px';
+  trailDots[0].el.style.top=trailDots[0].y+'px';
+  requestAnimationFrame(lagLoop);
+})();
+
+document.querySelectorAll('a,button,[data-tilt]').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.width='22px';cur.style.height='22px';
+    curR.style.width='58px';curR.style.height='58px';
+    curR.style.borderColor='rgba(0,200,240,.8)';
+    curR.style.background='rgba(0,200,240,.04)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.width='10px';cur.style.height='10px';
+    curR.style.width='36px';curR.style.height='36px';
+    curR.style.borderColor='rgba(0,200,240,.35)';
+    curR.style.background='none';
+  });
+});
+
+/* ═══════════════════════════════════════
+   THREE.JS — FULL IMMERSIVE SCENE
+═══════════════════════════════════════ */
 (function(){
   const canvas=document.getElementById('three-c');
   const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.shadowMap.enabled=true;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.2;
+
   const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(55,1,.1,100);
-  camera.position.z=5;
+  scene.fog=new THREE.FogExp2(0x060a14,.035);
+
+  const camera=new THREE.PerspectiveCamera(60,1,.1,200);
+  camera.position.set(0,0,7);
 
   function rsz(){
     const w=canvas.parentElement.offsetWidth,h=canvas.parentElement.offsetHeight;
     renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();
   }rsz();window.addEventListener('resize',rsz);
 
+  /* ── MAIN GROUP ── */
   const group=new THREE.Group();
   scene.add(group);
-  group.position.set(2.8,0,0);
+  group.position.set(3.2,0,0);
 
-  /* outer wire sphere */
-  const sg=new THREE.SphereGeometry(2,24,24);
-  const sm=new THREE.MeshBasicMaterial({color:0x00c8f0,wireframe:true,transparent:true,opacity:.07});
-  group.add(new THREE.Mesh(sg,sm));
+  /* ── OUTER ICOSAHEDRON (not sphere — more interesting geometry) ── */
+  const icoGeo=new THREE.IcosahedronGeometry(2.2,3);
+  const icoMat=new THREE.MeshBasicMaterial({color:0x00c8f0,wireframe:true,transparent:true,opacity:.06});
+  const ico=new THREE.Mesh(icoGeo,icoMat);
+  group.add(ico);
 
-  /* inner counter-rotating sphere */
-  const ig=new THREE.SphereGeometry(1.15,14,14);
-  const im=new THREE.MeshBasicMaterial({color:0x8a6fc4,wireframe:true,transparent:true,opacity:.11});
-  const inner=new THREE.Mesh(ig,im);
-  group.add(inner);
+  /* ── INNER OCTAHEDRON ── */
+  const octGeo=new THREE.OctahedronGeometry(1.1,2);
+  const octMat=new THREE.MeshBasicMaterial({color:0x8a6fc4,wireframe:true,transparent:true,opacity:.13});
+  const oct=new THREE.Mesh(octGeo,octMat);
+  group.add(oct);
 
-  /* orbiting torus rings */
-  const t1=new THREE.Mesh(new THREE.TorusGeometry(2.3,.005,2,72),new THREE.MeshBasicMaterial({color:0x00c8f0,transparent:true,opacity:.28}));
-  t1.rotation.x=Math.PI/2.4;group.add(t1);
-  const t2=new THREE.Mesh(new THREE.TorusGeometry(1.75,.004,2,56),new THREE.MeshBasicMaterial({color:0x8a6fc4,transparent:true,opacity:.22}));
-  t2.rotation.z=Math.PI/3.5;group.add(t2);
+  /* ── INNERMOST TETRAHEDRON ── */
+  const tetGeo=new THREE.TetrahedronGeometry(.55,2);
+  const tetMat=new THREE.MeshBasicMaterial({color:0xf06292,wireframe:true,transparent:true,opacity:.18});
+  const tet=new THREE.Mesh(tetGeo,tetMat);
+  group.add(tet);
 
-  /* floating particles around sphere */
-  const N=180,pos=new Float32Array(N*3);
-  for(let i=0;i<N;i++){
-    const th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1),r=1.7+Math.random()*2.2;
-    pos[i*3]=r*Math.sin(ph)*Math.cos(th);pos[i*3+1]=r*Math.sin(ph)*Math.sin(th);pos[i*3+2]=r*Math.cos(ph);
+  /* ── 5 ORBITING RINGS at different angles ── */
+  const ringColors=[0x00c8f0,0x8a6fc4,0xf06292,0x00c8f0,0xa78bfa];
+  const ringAngles=[[Math.PI/2,0,0],[0,Math.PI/3,0],[Math.PI/4,Math.PI/4,0],[0,Math.PI/2,Math.PI/5],[Math.PI/6,0,Math.PI/3]];
+  const rings=ringAngles.map((angles,i)=>{
+    const r=new THREE.Mesh(
+      new THREE.TorusGeometry(2.2-i*.18,.004+i*.001,2,80),
+      new THREE.MeshBasicMaterial({color:ringColors[i],transparent:true,opacity:.25-.02*i})
+    );
+    r.rotation.set(...angles);
+    group.add(r);
+    return r;
+  });
+
+  /* ── DENSE PARTICLE CLOUD (600 particles) ── */
+  const PC=600;
+  const pPos=new Float32Array(PC*3);
+  const pCol=new Float32Array(PC*3);
+  const cA=new THREE.Color(0x00c8f0),cB=new THREE.Color(0x8a6fc4),cC=new THREE.Color(0xf06292);
+  for(let i=0;i<PC;i++){
+    const th=Math.random()*Math.PI*2,ph=Math.acos(2*Math.random()-1);
+    const r=1.5+Math.random()*3.5;
+    pPos[i*3]=r*Math.sin(ph)*Math.cos(th);
+    pPos[i*3+1]=r*Math.sin(ph)*Math.sin(th);
+    pPos[i*3+2]=r*Math.cos(ph);
+    const mix=Math.random();
+    const c=mix<.5?cA.clone().lerp(cB,mix*2):cB.clone().lerp(cC,(mix-.5)*2);
+    pCol[i*3]=c.r;pCol[i*3+1]=c.g;pCol[i*3+2]=c.b;
   }
-  const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  group.add(new THREE.Points(pg,new THREE.PointsMaterial({color:0x00c8f0,size:.028,transparent:true,opacity:.55})));
+  const pGeo=new THREE.BufferGeometry();
+  pGeo.setAttribute('position',new THREE.BufferAttribute(pPos,3));
+  pGeo.setAttribute('color',new THREE.BufferAttribute(pCol,3));
+  const pMat=new THREE.PointsMaterial({size:.032,vertexColors:true,transparent:true,opacity:.7,sizeAttenuation:true});
+  const points=new THREE.Points(pGeo,pMat);
+  group.add(points);
 
+  /* ── NEURAL CONNECTION LINES between nearest particles ── */
+  const linePositions=[];
+  for(let i=0;i<PC;i++){
+    for(let j=i+1;j<PC;j++){
+      const dx=pPos[i*3]-pPos[j*3],dy=pPos[i*3+1]-pPos[j*3+1],dz=pPos[i*3+2]-pPos[j*3+2];
+      const dist=Math.sqrt(dx*dx+dy*dy+dz*dz);
+      if(dist<1.1&&linePositions.length<3600){
+        linePositions.push(pPos[i*3],pPos[i*3+1],pPos[i*3+2]);
+        linePositions.push(pPos[j*3],pPos[j*3+1],pPos[j*3+2]);
+      }
+    }
+  }
+  const lGeo=new THREE.BufferGeometry();
+  lGeo.setAttribute('position',new THREE.BufferAttribute(new Float32Array(linePositions),3));
+  const lMat=new THREE.LineBasicMaterial({color:0x00c8f0,transparent:true,opacity:.06});
+  group.add(new THREE.LineSegments(lGeo,lMat));
+
+  /* ── SHOCKWAVE RING (on click) ── */
+  const swGeo=new THREE.TorusGeometry(.1,.003,2,64);
+  const swMat=new THREE.MeshBasicMaterial({color:0x00c8f0,transparent:true,opacity:0});
+  const shockwave=new THREE.Mesh(swGeo,swMat);
+  group.add(shockwave);
+  let swActive=false,swScale=1;
+
+  canvas.parentElement.addEventListener('click',()=>{
+    swActive=true;swScale=1;swMat.opacity=.9;
+  });
+
+  /* ── BACKGROUND AMBIENT STARS ── */
+  const starN=400,starPos=new Float32Array(starN*3);
+  for(let i=0;i<starN;i++){
+    starPos[i*3]=(Math.random()-.5)*180;
+    starPos[i*3+1]=(Math.random()-.5)*180;
+    starPos[i*3+2]=(Math.random()-.5)*180;
+  }
+  const starGeo=new THREE.BufferGeometry();
+  starGeo.setAttribute('position',new THREE.BufferAttribute(starPos,3));
+  scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xffffff,size:.08,transparent:true,opacity:.3})));
+
+  /* ── MOUSE ── */
   let mouseX=0,mouseY=0;
-  document.addEventListener('mousemove',e=>{mouseX=(e.clientX/innerWidth-.5)*.5;mouseY=(e.clientY/innerHeight-.5)*.35});
+  document.addEventListener('mousemove',e=>{
+    mouseX=(e.clientX/innerWidth-.5)*.8;
+    mouseY=(e.clientY/innerHeight-.5)*.5;
+  });
 
+  /* ── ANIMATE ── */
   let t=0;
+  const origPositions=new Float32Array(pPos);
+
   (function anim(){
-    requestAnimationFrame(anim);t+=.005;
-    group.rotation.y=t*.28+mouseX;group.rotation.x=t*.09+mouseY*.4;
-    inner.rotation.y=-t*.45;inner.rotation.x=t*.28;
-    t1.rotation.z=t*.38;t2.rotation.y=t*.32;
+    requestAnimationFrame(anim);
+    t+=.005;
+
+    // main group mouse parallax
+    group.rotation.y+=(t*.22+mouseX-group.rotation.y)*.04;
+    group.rotation.x+=(t*.07+mouseY*.3-group.rotation.x)*.04;
+
+    // breathe geometry
+    const breathe=1+Math.sin(t*.8)*.03;
+    ico.scale.setScalar(breathe);
+
+    // counter-rotate inner shapes
+    oct.rotation.y=-t*.5;oct.rotation.x=t*.3;oct.rotation.z=t*.2;
+    tet.rotation.y=t*.7;tet.rotation.x=-t*.4;tet.rotation.z=t*.5;
+
+    // rings at different speeds
+    rings.forEach((r,i)=>{r.rotation.z+=.003+i*.001;r.rotation.x+=.002+i*.0008});
+
+    // particle pulse — wave through cloud
+    const pos=pGeo.attributes.position.array;
+    for(let i=0;i<PC;i++){
+      const ox=origPositions[i*3],oy=origPositions[i*3+1],oz=origPositions[i*3+2];
+      const dist=Math.sqrt(ox*ox+oy*oy+oz*oz);
+      const wave=Math.sin(t*1.2+dist*.8)*.06;
+      pos[i*3]=ox+ox/dist*wave;
+      pos[i*3+1]=oy+oy/dist*wave;
+      pos[i*3+2]=oz+oz/dist*wave;
+    }
+    pGeo.attributes.position.needsUpdate=true;
+
+    // shockwave expand
+    if(swActive){
+      swScale+=.18;
+      shockwave.scale.setScalar(swScale);
+      swMat.opacity=Math.max(0,.9-(swScale-1)*.06);
+      if(swScale>16){swActive=false;swScale=1;shockwave.scale.setScalar(1)}
+    }
+
     renderer.render(scene,camera);
   })();
 })();
 
-/* 3D TILT */
-document.querySelectorAll('[data-tilt]').forEach(el=>{
-  el.addEventListener('mousemove',e=>{
-    const r=el.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    el.style.transform=`perspective(800px) rotateY(${x*13}deg) rotateX(${-y*9}deg) translateZ(6px)`;
-    el.style.transition='transform .05s';
+/* ═══════════════════════════════════════
+   ADVANCED 3D CARD TILT with shine ray
+═══════════════════════════════════════ */
+document.querySelectorAll('[data-tilt]').forEach(card=>{
+  // add shine overlay
+  const shine=document.createElement('div');
+  shine.style.cssText='position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.06) 0%,transparent 60%)';
+  card.style.position='relative';
+  card.style.overflow='hidden';
+  card.appendChild(shine);
+
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    const dist=Math.sqrt(x*x+y*y);
+    card.style.transform=`perspective(700px) rotateY(${x*18}deg) rotateX(${-y*14}deg) translateZ(12px) scale(1.02)`;
+    card.style.transition='transform .05s';
+    card.style.boxShadow=`${-x*20}px ${-y*20}px 40px rgba(0,0,0,.4), 0 0 30px rgba(0,200,240,${.05+dist*.08})`;
+    // move shine
+    shine.style.opacity='1';
+    shine.style.background=`radial-gradient(circle at ${(x+.5)*100}% ${(y+.5)*100}%,rgba(255,255,255,.08) 0%,transparent 55%)`;
   });
-  el.addEventListener('mouseleave',()=>{
-    el.style.transition='transform .5s cubic-bezier(.23,1,.32,1)';
-    el.style.transform='perspective(800px) rotateY(0) rotateX(0) translateZ(0)';
+
+  card.addEventListener('mouseleave',()=>{
+    card.style.transition='transform .6s cubic-bezier(.23,1,.32,1),box-shadow .6s';
+    card.style.transform='perspective(700px) rotateY(0) rotateX(0) translateZ(0) scale(1)';
+    card.style.boxShadow='';
+    shine.style.opacity='0';
   });
 });
 
-/* SCROLL PARALLAX */
+/* ═══════════════════════════════════════
+   SCROLL PARALLAX — multi-layer depth
+═══════════════════════════════════════ */
 window.addEventListener('scroll',()=>{
   const sy=scrollY;
-  document.querySelector('.hero-inner').style.transform=`translateY(${sy*.1}px)`;
-  document.querySelector('.o1').style.transform=`translate(${sy*.04}px,${sy*.07}px)`;
-  document.querySelector('.o2').style.transform=`translate(${-sy*.03}px,${-sy*.05}px)`;
+  const hi=document.querySelector('.hero-inner');
+  if(hi)hi.style.transform=`translateY(${sy*.12}px)`;
+  const o1=document.querySelector('.o1');
+  const o2=document.querySelector('.o2');
+  if(o1)o1.style.transform=`translate(${sy*.05}px,${sy*.09}px) scale(${1+sy*.0002})`;
+  if(o2)o2.style.transform=`translate(${-sy*.04}px,${-sy*.06}px) scale(${1+sy*.0001})`;
 },{passive:true});
 
-/* SCROLL REVEAL */
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:.1});
+/* ═══════════════════════════════════════
+   SCROLL REVEAL — staggered with spring
+═══════════════════════════════════════ */
+const obs=new IntersectionObserver(es=>{
+  es.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('in'),i*40);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-/* COUNTERS */
+/* ═══════════════════════════════════════
+   SECTION BG GLOW — follows scroll
+═══════════════════════════════════════ */
+const sections=document.querySelectorAll('section');
+const scrollGlow=document.createElement('div');
+scrollGlow.style.cssText='position:fixed;width:600px;height:600px;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);opacity:.04;background:radial-gradient(circle,#00c8f0,transparent);transition:top .8s ease,left .8s ease';
+document.body.appendChild(scrollGlow);
+window.addEventListener('scroll',()=>{
+  scrollGlow.style.top=(scrollY+innerHeight/2-300)+'px';
+},{passive:true});
+
+/* ═══════════════════════════════════════
+   COUNTERS
+═══════════════════════════════════════ */
 function runCounters(){
   document.querySelectorAll('[data-count]').forEach(el=>{
-    const tgt=+el.dataset.count,dur=1800,s=performance.now();
+    const tgt=+el.dataset.count,dur=2200,s=performance.now();
     (function tick(now){
-      const p=Math.min((now-s)/dur,1),e=1-Math.pow(1-p,3);
-      el.textContent=Math.round(e*tgt);if(p<1)requestAnimationFrame(tick);
+      const p=Math.min((now-s)/dur,1);
+      const ease=p<.5?4*p*p*p:(p-1)*(2*p-2)*(2*p-2)+1;
+      el.textContent=Math.round(ease*tgt);
+      if(p<1)requestAnimationFrame(tick);
     })(s);
   });
 }
-new IntersectionObserver(es=>{if(es[0].isIntersecting){runCounters();es[0].target._obs.disconnect()}},{threshold:.5}).observe(
-  Object.assign(document.querySelector('.nums'),{_obs:new IntersectionObserver(()=>{})})
-);
 const numsEl=document.querySelector('.nums');
-const cObs=new IntersectionObserver(es=>{if(es[0].isIntersecting){runCounters();cObs.disconnect()}},{threshold:.5});
-cObs.observe(numsEl);
+if(numsEl){
+  const cObs=new IntersectionObserver(es=>{if(es[0].isIntersecting){runCounters();cObs.disconnect()}},{threshold:.5});
+  cObs.observe(numsEl);
+}
 
-/* SUBTLE NAME GLITCH every 5s */
+/* ═══════════════════════════════════════
+   TYPING EFFECT on hero tag
+═══════════════════════════════════════ */
+const tag=document.querySelector('.intro-tag');
+if(tag){
+  const txt=tag.textContent;
+  tag.textContent='';
+  tag.style.borderRight='1px solid var(--cyan)';
+  let ci=0;
+  const typer=setInterval(()=>{
+    tag.textContent=txt.slice(0,++ci);
+    if(ci>=txt.length){clearInterval(typer);setTimeout(()=>tag.style.borderRight='none',600)}
+  },38);
+}
+
+/* ═══════════════════════════════════════
+   NAME GLITCH — chromatic aberration
+═══════════════════════════════════════ */
 const nameEl=document.querySelector('.last');
-setInterval(()=>{
-  nameEl.style.filter='blur(1px)';
-  setTimeout(()=>{nameEl.style.filter='none'},60);
-},5000);
+if(nameEl){
+  setInterval(()=>{
+    nameEl.style.textShadow='3px 0 rgba(0,200,240,.6),-3px 0 rgba(240,98,146,.4)';
+    nameEl.style.letterSpacing='-.025em';
+    setTimeout(()=>{nameEl.style.textShadow='none';nameEl.style.letterSpacing='-.03em'},80);
+    setTimeout(()=>{
+      nameEl.style.textShadow='-2px 0 rgba(0,200,240,.5),2px 0 rgba(167,139,250,.3)';
+      setTimeout(()=>{nameEl.style.textShadow='none'},50);
+    },110);
+  },4500);
+}
+
+/* ═══════════════════════════════════════
+   SKILL TAG WAVE HOVER
+═══════════════════════════════════════ */
+document.querySelectorAll('.sk-tags').forEach(group=>{
+  const tags=[...group.querySelectorAll('.sk-tag')];
+  tags.forEach((tag,i)=>{
+    tag.addEventListener('mouseenter',()=>{
+      tags.forEach((t,j)=>{
+        const dist=Math.abs(i-j);
+        setTimeout(()=>{
+          t.style.transform=`translateY(${dist===0?-4:dist===1?-2:0}px)`;
+          t.style.borderColor=dist===0?'var(--cyan)':dist===1?'rgba(0,200,240,.4)':'';
+          t.style.color=dist===0?'var(--cyan)':'';
+          t.style.transition='all .15s';
+        },dist*30);
+      });
+    });
+    tag.addEventListener('mouseleave',()=>{
+      tags.forEach(t=>{t.style.transform='';t.style.borderColor='';t.style.color=''});
+    });
+  });
+});
 </script>
 </body>
 </html>
